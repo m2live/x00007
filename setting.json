@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.3/1;workstack=3",
+        "version": "1.2.3/1;workstack=4",
         "group": "",
         "branch": "",
         "admin": "",
@@ -1350,5 +1350,59 @@
             }
         }
     },
-    "hosting": []
+    "hosting": [
+        {
+            "origin": {
+                "address": [
+                    "image.genie.co.kr"
+                ],
+                "protocol": "http"
+            },
+            "name": "image.genie.co.kr",
+            "functions": {
+                "network": {
+                    "cache": {
+                        "cachingKey": {
+                            "queryString": {
+                                "enable": true
+                            },
+                            "case": {
+                                "enable": true
+                            },
+                            "acceptEncoding": {
+                                "enable": true
+                            }
+                        },
+                        "ttl": {
+                            "resCode": {
+                                "res5xx": {
+                                    "sec": 30
+                                },
+                                "res3xx": {
+                                    "sec": 300
+                                },
+                                "res2xx": {
+                                    "sec": 1800
+                                },
+                                "res4xx": {
+                                    "sec": 30
+                                },
+                                "noCache": {
+                                    "sec": 5
+                                }
+                            },
+                            "custom": []
+                        }
+                    },
+                    "proxy": {
+                        "meta": {
+                            "enable": true,
+                            "keyword": "proxy"
+                        }
+                    }
+                }
+            },
+            "enable": true
+        }
+    ]
 }
