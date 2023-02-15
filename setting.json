@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.3/1",
+        "version": "1.2.3/1;workstack=3",
         "group": "",
         "branch": "",
         "admin": "",
@@ -15,7 +15,6 @@
             }
         }
     },
-    "hosting": [],
     "env": {
         "management": {
             "api": {
@@ -222,7 +221,10 @@
                     "time": 1440
                 },
                 "retention": 10,
-                "compression": false
+                "compression": false,
+                "backup": [
+                    "eventlog"
+                ]
             },
             "system": {
                 "enable": true,
@@ -243,7 +245,20 @@
             },
             "repository": {
                 "concurrent": 1,
-                "list": []
+                "list": [
+                    {
+                        "endpoint": {
+                            "accessKey": "AKIAUPBJJDGAWIXX7GSB",
+                            "bucket": "winesoft-logs",
+                            "region": "ap-northeast-2",
+                            "secretKey": "LGWEvlv081ErMSbt5mqs+qpjxKEoV/zuBA45TdVp"
+                        },
+                        "name": "eventlog",
+                        "path": "/ktcloud/logs/type={logtype}/year={timestamp.year}/month={timestamp.month}/day={timestamp.day}/hour={timestamp.hour}/min={timestamp.minute}/domain={domain}/{hostname}_{ip}_{timestamp}.log",
+                        "rolling": "*/5 *",
+                        "type": "aws-s3"
+                    }
+                ]
             }
         },
         "rt": {
@@ -1014,7 +1029,7 @@
         "operations": {
             "log": {
                 "meta": {
-                    "dir": "/m2log"
+                    "dir": "/m2live_log"
                 },
                 "access": {
                     "enable": true,
@@ -1334,5 +1349,6 @@
                 "endpoints": []
             }
         }
-    }
+    },
+    "hosting": []
 }
