@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.3/1;workstack=6",
+        "version": "1.2.3/1;workstack=7",
         "group": "",
         "branch": "",
         "admin": "",
@@ -204,7 +204,8 @@
         },
         "log": {
             "meta": {
-                "dir": "m2log"
+                "dir": "m2log",
+                "port": 8514
             },
             "info": {
                 "enable": true,
@@ -247,6 +248,9 @@
                 "concurrent": 1,
                 "list": [
                     {
+                        "compression": {
+                            "enable": false
+                        },
                         "endpoint": {
                             "accessKey": "AKIAUPBJJDGAWIXX7GSB",
                             "bucket": "winesoft-logs",
