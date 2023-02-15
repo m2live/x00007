@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.3/1;workstack=13",
+        "version": "1.2.3/1;workstack=14",
         "group": "",
         "branch": "",
         "admin": "",
@@ -1045,7 +1045,10 @@
                     "xff": "all",
                     "form": "m2",
                     "format": null,
-                    "loopback": false
+                    "loopback": false,
+                    "backup": [
+                        "eventlog"
+                    ]
                 },
                 "origin": {
                     "enable": true,
@@ -1054,7 +1057,10 @@
                     },
                     "retention": 10,
                     "compression": false,
-                    "loopback": false
+                    "loopback": false,
+                    "backup": [
+                        "eventlog"
+                    ]
                 },
                 "dns": {
                     "enable": true,
