@@ -1,0 +1,1338 @@
+{
+    "meta": {
+        "version": "1.2.3/1",
+        "group": "",
+        "branch": "",
+        "admin": "",
+        "defaultHosting": "",
+        "setting": {
+            "history": {
+                "retention": {
+                    "days": 60,
+                    "count": 100,
+                    "size": 10
+                }
+            }
+        }
+    },
+    "hosting": [],
+    "env": {
+        "management": {
+            "api": {
+                "port": 10040,
+                "defaultRole": "admin",
+                "multipartName": "settingFile",
+                "allowList": [],
+                "roles": [
+                    {
+                        "name": "admin",
+                        "permissions": {
+                            "enableSetting": true,
+                            "enablePurge": true,
+                            "enableMetric": true,
+                            "enableGraph": true,
+                            "enableMonitoring": true,
+                            "enableInstall": true,
+                            "enableRestart": true,
+                            "enableGet": true
+                        }
+                    },
+                    {
+                        "name": "user",
+                        "permissions": {
+                            "enableMetric": true,
+                            "enableGraph": true,
+                            "enableMonitoring": true,
+                            "enableGet": true
+                        }
+                    }
+                ]
+            },
+            "server": {
+                "enable": true,
+                "connection": [
+                    {
+                        "name": "myFirebase",
+                        "type": "firebasePubsub",
+                        "info": {
+                            "apiKey": "AIzaSyBi_8TxfVOFIKkCYTJdlbsKnjMFzNRk6Ag",
+                            "authDomain": "m2live-api.firebaseapp.com",
+                            "databaseUrl": "https://m2live-api-default-rtdb.asia-southeast1.firebasedatabase.app",
+                            "projectId": "m2live-api",
+                            "storageBucket": "m2live-api.appspot.com",
+                            "messagingSenderId": "377398258384",
+                            "appId": "1:377398258384:web:7500521dd2ece2892c4cd5"
+                        }
+                    }
+                ],
+                "features": {
+                    "setting": {
+                        "enable": true,
+                        "feed": {
+                            "type": "firestore",
+                            "info": {
+                                "connect": "myFirebase",
+                                "doc": "m2nodes/#m2live.nodeId/events"
+                            }
+                        },
+                        "feedback": {
+                            "type": "firestore",
+                            "info": {
+                                "connect": "myFirebase",
+                                "doc": "m2nodes/#m2live.nodeId/feedbacks"
+                            },
+                            "uploadSetting": true
+                        }
+                    },
+                    "purge": {
+                        "enable": false,
+                        "workerCount": 2,
+                        "feed": {
+                            "type": "",
+                            "info": {}
+                        },
+                        "feedback": {
+                            "type": "",
+                            "info": {}
+                        }
+                    },
+                    "heartbeat": {
+                        "enable": true,
+                        "feedback": {
+                            "type": "firestore",
+                            "info": {
+                                "connect": "myFirebase",
+                                "doc": "m2nodes/#m2live.nodeId/heartbeats",
+                                "schedule": "*/15 * * * * *",
+                                "metrics": {
+                                    "system": true,
+                                    "rt": true,
+                                    "hosting": true,
+                                    "node": true
+                                }
+                            }
+                        }
+                    },
+                    "nodelist": {
+                        "enable": false,
+                        "feed": {
+                            "type": "",
+                            "info": {}
+                        },
+                        "feedback": {
+                            "type": "",
+                            "info": {}
+                        }
+                    }
+                },
+                "events": {
+                    "onSettingLoad": {
+                        "backup": {
+                            "enable": false,
+                            "hostname": "",
+                            "auto": true,
+                            "connect": "",
+                            "path": "",
+                            "timeout": 30
+                        }
+                    },
+                    "onPurgeRequest": {
+                        "propagation": {
+                            "enable": false,
+                            "nodelist": []
+                        }
+                    }
+                }
+            }
+        },
+        "properties": {
+            "memoryUsage": {
+                "totalUsableRatio": 100,
+                "workingRatio": 60,
+                "partition": "1:1"
+            },
+            "coreWorkers": {
+                "count": 0
+            },
+            "inspection": {
+                "process": {
+                    "enable": true,
+                    "retention": 14,
+                    "schedule": "5 * * * * *",
+                    "dir": "log/process"
+                }
+            }
+        },
+        "network": {
+            "passiveSockets": {
+                "listenIps": [
+                    "0.0.0.0"
+                ],
+                "maxCount": 80000,
+                "reopenRatio": 75
+            },
+            "http": {
+                "recvBufferSize": 8192,
+                "initCount": 20000,
+                "increaseCount": 6000
+            },
+            "https": {
+                "enableSni": true,
+                "initCount": 20000,
+                "increaseCount": 6000
+            },
+            "http2": {
+                "enable": false,
+                "concurrentStreamMaxCount": 10,
+                "keepAliveSec": 10,
+                "maxRequestHeaderFields": 200,
+                "maxResponseHeaderFields": 500
+            },
+            "geoip": {
+                "enable": false,
+                "ver": "geoip",
+                "path": ""
+            },
+            "pipelineSession": {
+                "internalTimeout": 300,
+                "externalTimeout": 10,
+                "listenTimeout": 10,
+                "keepAlive": {
+                    "enable": true,
+                    "reuseTimeout": 10
+                }
+            }
+        },
+        "log": {
+            "meta": {
+                "dir": "m2log"
+            },
+            "info": {
+                "enable": true,
+                "rolling": {
+                    "size": 1
+                },
+                "retention": 5,
+                "compression": false
+            },
+            "error": {
+                "enable": true,
+                "rolling": {
+                    "size": 1,
+                    "time": 1440
+                },
+                "retention": 10,
+                "compression": false
+            },
+            "system": {
+                "enable": true,
+                "rolling": {
+                    "size": 1
+                },
+                "retention": 5,
+                "compression": false
+            },
+            "originError": {
+                "enable": true,
+                "rolling": {
+                    "size": 1
+                },
+                "retention": 5,
+                "warning": false,
+                "compression": false
+            },
+            "repository": {
+                "concurrent": 1,
+                "list": []
+            }
+        },
+        "rt": {
+            "localCacheStorage": {
+                "meta": {
+                    "diskFailSec": 60,
+                    "diskFailCount": 10,
+                    "onCrash": "hang"
+                },
+                "disks": [],
+                "cleanup": {
+                    "time": "02:00",
+                    "age": 0,
+                    "emptyDir": "delete",
+                    "fileCount": 0,
+                    "defaultDiskCleanupSize": 0
+                }
+            },
+            "properties": {
+                "memoryRatioContents": 50,
+                "cacheObjectSize": 900,
+                "enableEmergencyMode": false,
+                "enableSyncStale": true,
+                "writeCountSmallFile": 0,
+                "enableRrd": true
+            },
+            "purge": {
+                "mode": "sync",
+                "async": {
+                    "target": "pattern",
+                    "queueMax": "100000",
+                    "preCacheControl": {
+                        "enable": true,
+                        "matchMax": 5000,
+                        "matchFirstOnly": false
+                    }
+                }
+            }
+        },
+        "puppeteer": {
+            "mode": {
+                "headless": true,
+                "enableCache": true
+            },
+            "options": [],
+            "pagePool": {
+                "pageReuseCount": 10000,
+                "useRandomCount": true,
+                "min": 0,
+                "max": 1,
+                "idleTimeout": 60000
+            }
+        }
+    },
+    "functions": {
+        "contents": {
+            "dims": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "dims",
+                    "minSourceSize": 0,
+                    "maxSourceSize": 30
+                },
+                "quality": {
+                    "max": 99,
+                    "format": 99
+                },
+                "jpg": {
+                    "preoptimize": {
+                        "enable": true,
+                        "minSize": 1024
+                    }
+                },
+                "gif": {
+                    "firstFrameOnly": false,
+                    "selectMinSize": false
+                },
+                "composite": [],
+                "byOriginal": []
+            },
+            "denc": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "denc"
+                },
+                "chunk": {
+                    "encrypt": {
+                        "algorithm": "aes-128-cbc",
+                        "iv": "",
+                        "token": "",
+                        "key": "$token",
+                        "keyHash": "none"
+                    },
+                    "sampling": {
+                        "enable": false,
+                        "segmentSize": 1048576,
+                        "offset": 0,
+                        "encryptSize": 16384
+                    }
+                },
+                "bulk": {
+                    "maxSourceSize": 500,
+                    "encrypt": {
+                        "algorithm": "RC4",
+                        "iv": "",
+                        "token": "",
+                        "key": "$token",
+                        "keyHash": "none"
+                    }
+                }
+            },
+            "epubedit": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "epubedit"
+                },
+                "trim": {
+                    "prefix": [],
+                    "include": [],
+                    "pageSpread": {
+                        "enable": false,
+                        "order": "auto"
+                    }
+                },
+                "archive": {
+                    "enable": false,
+                    "rules": []
+                }
+            },
+            "mp3edit": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "mp3edit"
+                }
+            },
+            "mp4edit": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "mp4edit"
+                },
+                "trim": {
+                    "useAllTracks": false,
+                    "maxRatio": 50
+                }
+            },
+            "pagedesk": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "pagedesk",
+                    "maxSourceSize": 1,
+                    "maxDomSourceSize": 0
+                },
+                "replace": {
+                    "pre": {
+                        "enable": false,
+                        "list": []
+                    },
+                    "post": {
+                        "enable": false,
+                        "list": []
+                    }
+                },
+                "html": {
+                    "enable": false,
+                    "in": {
+                        "at": null,
+                        "escaped": true
+                    },
+                    "out": {
+                        "at": null,
+                        "escaped": true
+                    }
+                },
+                "dom": {
+                    "insert": {
+                        "enable": false,
+                        "action": "appendChild",
+                        "list": []
+                    },
+                    "remove": {
+                        "enable": false,
+                        "includeChild": true,
+                        "elements": []
+                    },
+                    "tags": {
+                        "anchor": {
+                            "enable": false,
+                            "enableLink": true
+                        }
+                    },
+                    "style": {
+                        "isolate": {
+                            "enable": false,
+                            "selector": null
+                        }
+                    },
+                    "refctrl": {
+                        "enable": false,
+                        "mode": "whitelist",
+                        "domains": [],
+                        "tags": []
+                    }
+                }
+            },
+            "pagemixed": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "pagemixed"
+                },
+                "traffics": {
+                    "rebound": {
+                        "domain": null,
+                        "tags": {
+                            "domain": null,
+                            "targets": []
+                        }
+                    },
+                    "resource": {
+                        "domain": null
+                    }
+                },
+                "upgradeHttps": {
+                    "ip": {
+                        "enable": true
+                    },
+                    "retain": {
+                        "enable": true,
+                        "list": []
+                    },
+                    "black": {
+                        "enable": true,
+                        "list": []
+                    },
+                    "white": {
+                        "enable": true,
+                        "list": []
+                    },
+                    "svldb": {
+                        "enable": true,
+                        "url": "https://svl.m2live.co.kr",
+                        "report": {
+                            "enable": true,
+                            "schedule": "0 0 * * * *"
+                        },
+                        "update": {
+                            "enable": true,
+                            "schedule": "0 0 * * * *"
+                        }
+                    },
+                    "syntax": {
+                        "enable": true,
+                        "proxying": "http"
+                    },
+                    "targetTags": []
+                },
+                "options": {
+                    "anchor": {
+                        "enable": false,
+                        "mixed": false,
+                        "enableLink": true
+                    },
+                    "video": {
+                        "enable": false
+                    },
+                    "embed": {
+                        "enable": false
+                    },
+                    "schemeless": {
+                        "enable": false,
+                        "originProtocol": "http"
+                    },
+                    "encryptSrcUrl": {
+                        "enable": false,
+                        "algorithm": null,
+                        "key": null,
+                        "iv": null
+                    },
+                    "image": {
+                        "datasrc": {
+                            "enable": false
+                        },
+                        "datauri": {
+                            "enable": false
+                        }
+                    }
+                }
+            },
+            "pagefx": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "pagefx"
+                },
+                "frontend": {
+                    "selector": null,
+                    "responsive": {
+                        "enable": false,
+                        "width": 800
+                    },
+                    "viewmore": {
+                        "enable": false,
+                        "style": null,
+                        "height": {
+                            "initial": 900,
+                            "margin": 0
+                        },
+                        "button": {
+                            "inactiveTitle": null,
+                            "activeTitle": null,
+                            "style": null
+                        }
+                    },
+                    "pinchzoom": {
+                        "enable": false,
+                        "selectors": []
+                    },
+                    "iframeAutoHeight": {
+                        "enable": false,
+                        "selector": "iframe",
+                        "library": {
+                            "parent": {
+                                "enable": false,
+                                "option": null
+                            },
+                            "child": {
+                                "enable": false
+                            }
+                        }
+                    }
+                },
+                "backend": {
+                    "selector": null,
+                    "img": {
+                        "selector": null,
+                        "domain": null,
+                        "dims": "dims",
+                        "optimg": {
+                            "enable": true,
+                            "selector": null,
+                            "src": {
+                                "size": 0,
+                                "width": 0,
+                                "height": 0,
+                                "formats": null,
+                                "data-attrs": [
+                                    "data-src"
+                                ]
+                            },
+                            "dest": {
+                                "formats": null,
+                                "maxwidth": 1200,
+                                "optimize": "auto",
+                                "loading": "lazy",
+                                "responsive": {
+                                    "picture": "auto",
+                                    "media": {
+                                        "usemap": "auto",
+                                        "min-width": {
+                                            "enable": false,
+                                            "values": []
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "splitimg": {
+                            "enable": true,
+                            "selector": null,
+                            "src": {
+                                "size": 102400,
+                                "width": 0,
+                                "height": 2000,
+                                "formats": null,
+                                "data-attrs": [
+                                    "data-src"
+                                ]
+                            },
+                            "dest": {
+                                "splitHeight": 1200,
+                                "usemap": "none"
+                            }
+                        },
+                        "gif2video": {
+                            "enable": true,
+                            "selector": null,
+                            "transcoder": "xcdr",
+                            "src": {
+                                "size": 102400,
+                                "width": 100,
+                                "height": 100
+                            },
+                            "dest": {
+                                "formats": [
+                                    "mp4"
+                                ],
+                                "attrs": [
+                                    "autoplay",
+                                    "loop",
+                                    "muted",
+                                    "playsinline"
+                                ],
+                                "responsive": {
+                                    "video": "auto"
+                                }
+                            }
+                        }
+                    },
+                    "video": {
+                        "selector": null,
+                        "domain": null,
+                        "transcoder": "xcdr",
+                        "optvideo": {
+                            "enable": true,
+                            "selector": null,
+                            "src": {
+                                "size": 102400,
+                                "width": 100,
+                                "height": 100,
+                                "bitrate": 102400
+                            },
+                            "dest": {
+                                "presets": [
+                                    {
+                                        "name": "_720p",
+                                        "type": "video/mp4"
+                                    }
+                                ],
+                                "attrs": [
+                                    "autoplay",
+                                    "loop",
+                                    "muted",
+                                    "playsinline"
+                                ],
+                                "responsive": {
+                                    "video": "auto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "unzip": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "unzip"
+                },
+                "contentTypes": {
+                    "default": "application/octet-stream",
+                    "map": []
+                }
+            },
+            "webfont": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "wfnt"
+                },
+                "embed": []
+            },
+            "transcoder": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "xcdr"
+                }
+            }
+        },
+        "network": {
+            "cache": {
+                "ttl": {
+                    "resCode": {
+                        "res2xx": {
+                            "sec": 1800,
+                            "ratio": 0,
+                            "max": 86400
+                        },
+                        "noCache": {
+                            "sec": 5,
+                            "ratio": 0,
+                            "max": 5,
+                            "maxAge": 0
+                        },
+                        "res3xx": {
+                            "sec": 300
+                        },
+                        "res4xx": {
+                            "sec": 30
+                        },
+                        "res5xx": {
+                            "sec": 30
+                        },
+                        "onError": {
+                            "connectTimeout": 3,
+                            "receiveTimeout": 3
+                        }
+                    },
+                    "custom": [],
+                    "policies": {
+                        "priority": [
+                            "cc_nocache",
+                            "custom",
+                            "cc_maxage",
+                            "rescode"
+                        ],
+                        "extendBy4xx": false,
+                        "extendBy5xx": true,
+                        "unvalidatableObjectResCode": 0,
+                        "baseTime": "response"
+                    }
+                },
+                "cachingKey": {
+                    "case": {
+                        "enable": true
+                    },
+                    "queryString": {
+                        "enable": true,
+                        "matchingList": []
+                    },
+                    "acceptEncoding": {
+                        "enable": true
+                    },
+                    "postMethod": {
+                        "enable": false,
+                        "bodySensitive": true,
+                        "bodyContentLengthMax": 102400,
+                        "matchingList": []
+                    },
+                    "vary": {
+                        "enable": false,
+                        "headers": []
+                    }
+                },
+                "purge": {
+                    "mode": "sync",
+                    "noCacheRequestExpire": false,
+                    "refreshExpired": true,
+                    "purge2Expire": "none",
+                    "rootPurgeExpire": "all",
+                    "rootHardPurge": true,
+                    "resCodeNoCtrlTarget": 200,
+                    "resCodeDenyCtrlTarget": 200,
+                    "queryStringCollective": false
+                }
+            },
+            "http": {
+                "frontEnd": {
+                    "session": {
+                        "keepAliveSec": 10
+                    },
+                    "headers": {
+                        "via": {
+                            "enable": true
+                        },
+                        "etag": {
+                            "enable": true
+                        },
+                        "age": {
+                            "enable": false
+                        },
+                        "expires": {
+                            "enable": false,
+                            "base": "access",
+                            "matchingList": []
+                        },
+                        "server": {
+                            "enable": true
+                        },
+                        "connection": {
+                            "directive": "keep-alive"
+                        },
+                        "lastModified": {
+                            "rule": "orlater"
+                        },
+                        "ifRange": {
+                            "enable": true,
+                            "purge": false
+                        },
+                        "keepAlive": {
+                            "enable": true,
+                            "max": 0
+                        },
+                        "modify": {
+                            "enable": false,
+                            "matchFirstOnly": false,
+                            "matchingList": []
+                        },
+                        "debug": {
+                            "enableContentProcessing": false
+                        }
+                    },
+                    "accessControl": {
+                        "enable": false,
+                        "defaultAction": "allow",
+                        "denialCode": 401,
+                        "matchingList": []
+                    },
+                    "optionsRequest": {
+                        "enable": true
+                    },
+                    "bypass": {
+                        "session": {
+                            "connectTimeout": 5,
+                            "receiveTimeout": 300
+                        },
+                        "matchingList": [],
+                        "noCacheRequest": {
+                            "enable": false
+                        },
+                        "getMethod": {
+                            "enable": false,
+                            "enableBackendAffinity": false,
+                            "enableSticky": false
+                        },
+                        "postMethod": {
+                            "enable": false,
+                            "enableBackendAffinity": false,
+                            "enableSticky": false
+                        },
+                        "putMethod": {
+                            "enable": true,
+                            "enableBackendAffinity": false,
+                            "enableSticky": false
+                        }
+                    },
+                    "compression": {
+                        "enable": false,
+                        "minSrcSize": 2,
+                        "maxSrcSize": 2048,
+                        "matchingList": [],
+                        "gzip": {
+                            "level": 6
+                        },
+                        "brotli": {
+                            "window": 22,
+                            "quality": 11
+                        }
+                    },
+                    "customErrorPage": {
+                        "resCode": 0,
+                        "path": ""
+                    }
+                },
+                "backEnd": {
+                    "urlRewrites": [],
+                    "session": {
+                        "connectTimeout": 3,
+                        "receiveTimeout": 10,
+                        "reuseTimeout": 60,
+                        "balanceMode": "roundrobin",
+                        "maxUnknownSize": 32,
+                        "hash": {
+                            "urlIgnoreList": null
+                        }
+                    },
+                    "dns": {
+                        "ttlMin": 0,
+                        "ttlMax": 0
+                    },
+                    "health": {
+                        "exclusion": {
+                            "count": 3
+                        },
+                        "recovery": {
+                            "cycle": 10,
+                            "count": 5,
+                            "responseCode": 0,
+                            "url": "/",
+                            "log": true
+                        },
+                        "checkers": []
+                    },
+                    "headers": {
+                        "cacheOriginal": {
+                            "enable": false,
+                            "standard": false
+                        },
+                        "host": {
+                            "enable": false,
+                            "value": null
+                        },
+                        "userAgent": {
+                            "enable": false,
+                            "value": null
+                        },
+                        "xff": {
+                            "appendProxy": true
+                        },
+                        "ifRange": {
+                            "enable": false
+                        },
+                        "wholeClientRequest": {
+                            "enable": false
+                        },
+                        "originalEtag": {
+                            "enable": false
+                        },
+                        "limitMaxRange": {
+                            "enable": false,
+                            "size": 1
+                        },
+                        "initByFullRange": {
+                            "enable": false
+                        },
+                        "modify": {
+                            "enable": false,
+                            "matchFirstOnly": false,
+                            "matchingList": []
+                        },
+                        "forwardContextId": {
+                            "enable": false,
+                            "header": "X-M2X-Forwarded-Context-Id"
+                        }
+                    },
+                    "authorization": {
+                        "enable": false,
+                        "type": "aws-s3",
+                        "region": "",
+                        "accessKeyId": "",
+                        "accessKeyIdType": null,
+                        "secretAccessKey": "",
+                        "secretAccessKeyType": null
+                    },
+                    "redirectionTrace": {
+                        "enable": false,
+                        "responseCode": [],
+                        "url": []
+                    }
+                }
+            },
+            "proxy": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "proxy"
+                }
+            },
+            "mp4hls": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "mp4hls"
+                },
+                "hls": {
+                    "duration": 10,
+                    "indexName": "index.m3u8",
+                    "playlist": {
+                        "version": 3,
+                        "alternates": false,
+                        "alternatesName": "playlist.m3u8",
+                        "sequence": 0
+                    }
+                }
+            },
+            "mp3hls": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "mp3hls"
+                },
+                "hls": {
+                    "duration": 10,
+                    "indexName": "index.m3u8",
+                    "segmentType": "ts",
+                    "insertPcr": false,
+                    "playlist": {
+                        "version": 3,
+                        "alternates": false,
+                        "alternatesName": "playlist.m3u8",
+                        "sequence": 0
+                    }
+                }
+            }
+        },
+        "operations": {
+            "log": {
+                "meta": {
+                    "dir": "/m2log"
+                },
+                "access": {
+                    "enable": true,
+                    "rolling": {
+                        "time": 1440
+                    },
+                    "retention": 10,
+                    "compression": false,
+                    "xff": "all",
+                    "form": "m2",
+                    "format": null,
+                    "loopback": false
+                },
+                "origin": {
+                    "enable": true,
+                    "rolling": {
+                        "time": 1440
+                    },
+                    "retention": 10,
+                    "compression": false,
+                    "loopback": false
+                },
+                "dns": {
+                    "enable": true,
+                    "rolling": {
+                        "size": 10
+                    },
+                    "retention": 10,
+                    "compression": false
+                },
+                "monitoring": {
+                    "enable": false,
+                    "rolling": {
+                        "time": 60
+                    },
+                    "retention": 10,
+                    "compression": false,
+                    "form": "json"
+                }
+            },
+            "stats": {
+                "level": {
+                    "depth": 0,
+                    "accumulate": false
+                },
+                "https": {
+                    "seperate": false
+                },
+                "loopback": {
+                    "passive": false,
+                    "active": false
+                }
+            },
+            "metrics": {
+                "histograms": [
+                    {
+                        "metric": "m2_http_frontend_tx_ttfb_seconds",
+                        "buckets": [
+                            0.001,
+                            0.005,
+                            0.01,
+                            0.05,
+                            0.1,
+                            0.5,
+                            1,
+                            5,
+                            10
+                        ]
+                    },
+                    {
+                        "metric": "m2_http_frontend_tx_complete_seconds",
+                        "buckets": [
+                            0.001,
+                            0.005,
+                            0.01,
+                            0.05,
+                            0.1,
+                            0.5,
+                            1,
+                            5,
+                            10
+                        ]
+                    },
+                    {
+                        "metric": "m2_http_frontend_responses_cl_size_bytes",
+                        "buckets": [
+                            100,
+                            1000,
+                            10000,
+                            100000,
+                            1000000,
+                            10000000,
+                            100000000,
+                            1000000000,
+                            10000000000
+                        ]
+                    },
+                    {
+                        "metric": "m2_http_frontend_responses_object_size_bytes",
+                        "buckets": [
+                            100,
+                            1000,
+                            10000,
+                            100000,
+                            1000000,
+                            10000000,
+                            100000000,
+                            1000000000,
+                            10000000000
+                        ]
+                    },
+                    {
+                        "metric": "m2_http_backend_tx_ttfb_seconds",
+                        "buckets": [
+                            0.001,
+                            0.005,
+                            0.01,
+                            0.05,
+                            0.1,
+                            0.5,
+                            1,
+                            5,
+                            10
+                        ]
+                    },
+                    {
+                        "metric": "m2_http_backend_tx_complete_seconds",
+                        "buckets": [
+                            0.001,
+                            0.005,
+                            0.01,
+                            0.05,
+                            0.1,
+                            0.5,
+                            1,
+                            5,
+                            10
+                        ]
+                    },
+                    {
+                        "metric": "m2_http_backend_responses_cl_size_bytes",
+                        "buckets": [
+                            100,
+                            1000,
+                            10000,
+                            100000,
+                            1000000,
+                            10000000,
+                            100000000,
+                            1000000000,
+                            10000000000
+                        ]
+                    },
+                    {
+                        "metric": "m2_http_backend_responses_object_size_bytes",
+                        "buckets": [
+                            100,
+                            1000,
+                            10000,
+                            100000,
+                            1000000,
+                            10000000,
+                            100000000,
+                            1000000000,
+                            10000000000
+                        ]
+                    },
+                    {
+                        "metric": "m2_cache_obj_create_size_bytes",
+                        "buckets": [
+                            100,
+                            1000,
+                            10000,
+                            100000,
+                            1000000,
+                            10000000,
+                            100000000,
+                            1000000000,
+                            10000000000
+                        ]
+                    },
+                    {
+                        "metric": "m2_cache_obj_erase_size_bytes",
+                        "buckets": [
+                            100,
+                            1000,
+                            10000,
+                            100000,
+                            1000000,
+                            10000000,
+                            100000000,
+                            1000000000,
+                            10000000000
+                        ]
+                    },
+                    {
+                        "metric": "m2_dims_init_seconds",
+                        "buckets": [
+                            0.001,
+                            0.005,
+                            0.01,
+                            0.05,
+                            0.1,
+                            0.5,
+                            1,
+                            5,
+                            10
+                        ]
+                    },
+                    {
+                        "metric": "m2_dims_complete_seconds",
+                        "buckets": [
+                            0.001,
+                            0.005,
+                            0.01,
+                            0.05,
+                            0.1,
+                            0.5,
+                            1,
+                            5,
+                            10
+                        ]
+                    },
+                    {
+                        "metric": "m2_dims_src_size_bytes",
+                        "buckets": [
+                            100,
+                            1000,
+                            10000,
+                            100000,
+                            1000000,
+                            10000000,
+                            100000000
+                        ]
+                    },
+                    {
+                        "metric": "m2_dims_src_width_total",
+                        "buckets": [
+                            100,
+                            250,
+                            500,
+                            750,
+                            1000,
+                            1500
+                        ]
+                    },
+                    {
+                        "metric": "m2_dims_src_height_total",
+                        "buckets": [
+                            100,
+                            250,
+                            500,
+                            750,
+                            1000,
+                            1500,
+                            2500,
+                            5000,
+                            10000,
+                            20000,
+                            40000
+                        ]
+                    },
+                    {
+                        "metric": "m2_dims_dest_size_bytes",
+                        "buckets": [
+                            100,
+                            1000,
+                            10000,
+                            100000,
+                            1000000,
+                            10000000,
+                            100000000
+                        ]
+                    },
+                    {
+                        "metric": "m2_dims_dest_width_total",
+                        "buckets": [
+                            100,
+                            250,
+                            500,
+                            750,
+                            1000,
+                            1500
+                        ]
+                    },
+                    {
+                        "metric": "m2_dims_dest_height_total",
+                        "buckets": [
+                            100,
+                            250,
+                            500,
+                            750,
+                            1000,
+                            1500,
+                            2500,
+                            5000,
+                            10000,
+                            20000,
+                            40000
+                        ]
+                    }
+                ]
+            },
+            "chaining": {
+                "pipe": {
+                    "flags": "nolog;nostats;nourlrewrite;nosessionurlrewrite;recursive;reqfilemeta;",
+                    "conflict": "skip"
+                }
+            }
+        },
+        "backend": {
+            "aws_s3": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "aws_s3"
+                },
+                "endpoints": []
+            }
+        }
+    }
+}
