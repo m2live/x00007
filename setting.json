@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.5/1;workstack=28",
+        "version": "1.2.5/1;workstack=29",
         "group": "",
         "branch": "",
         "admin": "",
@@ -1364,58 +1364,11 @@
         {
             "name": "image.genie.co.kr",
             "origin": {
-                "protocol": "http",
                 "address": [
                     "image.genie.co.kr"
-                ]
+                ],
+                "protocol": "http"
             },
-            "functions": {
-                "network": {
-                    "proxy": {
-                        "meta": {
-                            "enable": true,
-                            "keyword": "proxy"
-                        }
-                    },
-                    "cache": {
-                        "ttl": {
-                            "resCode": {
-                                "res3xx": {
-                                    "sec": 300
-                                },
-                                "res4xx": {
-                                    "sec": 30
-                                },
-                                "noCache": {
-                                    "sec": 5
-                                },
-                                "res2xx": {
-                                    "sec": 1800
-                                },
-                                "res5xx": {
-                                    "sec": 30
-                                }
-                            },
-                            "custom": []
-                        },
-                        "cachingKey": {
-                            "queryString": {
-                                "enable": true
-                            },
-                            "acceptEncoding": {
-                                "enable": true
-                            },
-                            "case": {
-                                "enable": true
-                            }
-                        }
-                    }
-                }
-            },
-            "enable": true
-        },
-        {
-            "name": "wimg.mk.co.kr",
             "functions": {
                 "network": {
                     "proxy": {
@@ -1426,32 +1379,32 @@
                     },
                     "cache": {
                         "cachingKey": {
-                            "case": {
-                                "enable": true
-                            },
                             "queryString": {
                                 "enable": true
                             },
                             "acceptEncoding": {
                                 "enable": true
+                            },
+                            "case": {
+                                "enable": true
                             }
                         },
                         "ttl": {
                             "resCode": {
-                                "res2xx": {
-                                    "sec": 1800
+                                "res4xx": {
+                                    "sec": 30
                                 },
                                 "res5xx": {
                                     "sec": 30
                                 },
-                                "res3xx": {
-                                    "sec": 300
+                                "res2xx": {
+                                    "sec": 1800
                                 },
                                 "noCache": {
                                     "sec": 5
                                 },
-                                "res4xx": {
-                                    "sec": 30
+                                "res3xx": {
+                                    "sec": 300
                                 }
                             },
                             "custom": []
@@ -1459,6 +1412,113 @@
                     }
                 }
             },
+            "enable": true
+        },
+        {
+            "functions": {
+                "network": {
+                    "cache": {
+                        "ttl": {
+                            "custom": [],
+                            "resCode": {
+                                "noCache": {
+                                    "sec": 5
+                                },
+                                "res2xx": {
+                                    "sec": 3600
+                                },
+                                "res5xx": {
+                                    "sec": 30
+                                },
+                                "res3xx": {
+                                    "sec": 300
+                                },
+                                "res4xx": {
+                                    "sec": 30
+                                }
+                            }
+                        },
+                        "cachingKey": {
+                            "queryString": {
+                                "enable": true
+                            },
+                            "acceptEncoding": {
+                                "enable": true
+                            },
+                            "case": {
+                                "enable": true
+                            }
+                        }
+                    },
+                    "proxy": {
+                        "meta": {
+                            "keyword": "proxy",
+                            "enable": true
+                        }
+                    }
+                }
+            },
+            "https": [
+                {
+                    "key": "https://storage.googleapis.com/download/storage/v1/b/m2live-api.appspot.com/o/services%2Fd134d678-ab6b-4604-9137-d93ce0571bc4?generation=1676447973831637&alt=media",
+                    "cert": "https://storage.googleapis.com/download/storage/v1/b/m2live-api.appspot.com/o/services%2F813408d3-8952-40e6-8565-6ea6c25716f7?generation=1676447963440205&alt=media",
+                    "ca": "https://storage.googleapis.com/download/storage/v1/b/m2live-api.appspot.com/o/services%2F7e12fde0-5873-453c-96c3-f58f40a9a323?generation=1676447985140791&alt=media"
+                }
+            ],
+            "name": "cds.myktoon.com",
+            "origin": {
+                "protocol": "https",
+                "address": [
+                    "ktn-cdspelb-889008498.ap-northeast-2.elb.amazonaws.com"
+                ]
+            },
+            "enable": true
+        },
+        {
+            "functions": {
+                "network": {
+                    "proxy": {
+                        "meta": {
+                            "keyword": "proxy",
+                            "enable": true
+                        }
+                    },
+                    "cache": {
+                        "ttl": {
+                            "resCode": {
+                                "res4xx": {
+                                    "sec": 30
+                                },
+                                "res2xx": {
+                                    "sec": 1800
+                                },
+                                "noCache": {
+                                    "sec": 5
+                                },
+                                "res3xx": {
+                                    "sec": 300
+                                },
+                                "res5xx": {
+                                    "sec": 30
+                                }
+                            },
+                            "custom": []
+                        },
+                        "cachingKey": {
+                            "queryString": {
+                                "enable": true
+                            },
+                            "acceptEncoding": {
+                                "enable": true
+                            },
+                            "case": {
+                                "enable": true
+                            }
+                        }
+                    }
+                }
+            },
+            "name": "wimg.mk.co.kr",
             "origin": {
                 "address": [
                     "wimg.mk.co.kr"
@@ -1468,73 +1528,30 @@
             "enable": true
         },
         {
-            "functions": {
-                "network": {
-                    "cache": {
-                        "ttl": {
-                            "resCode": {
-                                "res5xx": {
-                                    "sec": 30
-                                },
-                                "noCache": {
-                                    "sec": 5
-                                },
-                                "res3xx": {
-                                    "sec": 300
-                                },
-                                "res4xx": {
-                                    "sec": 30
-                                },
-                                "res2xx": {
-                                    "sec": 3600
-                                }
-                            },
-                            "custom": []
-                        },
-                        "cachingKey": {
-                            "case": {
-                                "enable": true
-                            },
-                            "queryString": {
-                                "enable": true
-                            },
-                            "acceptEncoding": {
-                                "enable": true
-                            }
-                        }
-                    },
-                    "proxy": {
-                        "meta": {
-                            "keyword": "proxy",
-                            "enable": true
-                        }
-                    }
-                }
-            },
             "name": "img.ktcdnteam.link",
-            "origin": {
-                "protocol": "https",
-                "address": []
-            },
-            "enable": true
-        },
-        {
-            "https": [
-                {
-                    "ca": "https://storage.googleapis.com/download/storage/v1/b/m2live-api.appspot.com/o/services%2F7e12fde0-5873-453c-96c3-f58f40a9a323?generation=1676447985140791&alt=media",
-                    "cert": "https://storage.googleapis.com/download/storage/v1/b/m2live-api.appspot.com/o/services%2F813408d3-8952-40e6-8565-6ea6c25716f7?generation=1676447963440205&alt=media",
-                    "key": "https://storage.googleapis.com/download/storage/v1/b/m2live-api.appspot.com/o/services%2Fd134d678-ab6b-4604-9137-d93ce0571bc4?generation=1676447973831637&alt=media"
-                }
-            ],
-            "origin": {
-                "protocol": "https",
-                "address": [
-                    "ktn-cdspelb-889008498.ap-northeast-2.elb.amazonaws.com"
-                ]
-            },
             "functions": {
                 "network": {
                     "cache": {
+                        "ttl": {
+                            "custom": [],
+                            "resCode": {
+                                "noCache": {
+                                    "sec": 5
+                                },
+                                "res4xx": {
+                                    "sec": 30
+                                },
+                                "res5xx": {
+                                    "sec": 30
+                                },
+                                "res2xx": {
+                                    "sec": 3600
+                                },
+                                "res3xx": {
+                                    "sec": 300
+                                }
+                            }
+                        },
                         "cachingKey": {
                             "case": {
                                 "enable": true
@@ -1545,37 +1562,22 @@
                             "queryString": {
                                 "enable": true
                             }
-                        },
-                        "ttl": {
-                            "resCode": {
-                                "res5xx": {
-                                    "sec": 30
-                                },
-                                "res2xx": {
-                                    "sec": 3600
-                                },
-                                "noCache": {
-                                    "sec": 5
-                                },
-                                "res4xx": {
-                                    "sec": 30
-                                },
-                                "res3xx": {
-                                    "sec": 300
-                                }
-                            },
-                            "custom": []
                         }
                     },
                     "proxy": {
                         "meta": {
-                            "keyword": "proxy",
-                            "enable": true
+                            "enable": true,
+                            "keyword": "proxy"
                         }
                     }
                 }
             },
-            "name": "cds.myktoon.com",
+            "origin": {
+                "address": [
+                    "api-storage.cloud.toast.com/v1/AUTH_b2e666be107845569c39251b0be7fd32/dahee/"
+                ],
+                "protocol": "https"
+            },
             "enable": true
         }
     ]
