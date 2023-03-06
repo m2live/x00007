@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.5/1;workstack=29",
+        "version": "1.2.5/1;workstack=30",
         "group": "",
         "branch": "",
         "admin": "",
@@ -1092,7 +1092,7 @@
             },
             "metrics": {
                 "labels": {
-                    "host": "host"
+                    "host": "ktcdn_domain"
                 },
                 "histograms": [
                     {
