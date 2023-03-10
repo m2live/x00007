@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.5/1;workstack=31",
+        "version": "1.2.5/1;workstack=32",
         "group": "",
         "branch": "",
         "admin": "",
@@ -1362,68 +1362,14 @@
     },
     "hosting": [
         {
-            "name": "image.genie.co.kr",
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "image.genie.co.kr"
-                ]
-            },
             "functions": {
                 "network": {
-                    "cache": {
-                        "cachingKey": {
-                            "queryString": {
-                                "enable": true
-                            },
-                            "acceptEncoding": {
-                                "enable": true
-                            },
-                            "case": {
-                                "enable": true
-                            }
-                        },
-                        "ttl": {
-                            "resCode": {
-                                "res3xx": {
-                                    "sec": 300
-                                },
-                                "noCache": {
-                                    "sec": 5
-                                },
-                                "res5xx": {
-                                    "sec": 30
-                                },
-                                "res4xx": {
-                                    "sec": 30
-                                },
-                                "res2xx": {
-                                    "sec": 1800
-                                }
-                            },
-                            "custom": []
-                        }
-                    },
                     "proxy": {
                         "meta": {
-                            "keyword": "proxy",
-                            "enable": true
+                            "enable": true,
+                            "keyword": "proxy"
                         }
-                    }
-                }
-            },
-            "enable": true
-        },
-        {
-            "https": [
-                {
-                    "key": "https://storage.googleapis.com/download/storage/v1/b/m2live-api.appspot.com/o/services%2Fd134d678-ab6b-4604-9137-d93ce0571bc4?generation=1676447973831637&alt=media",
-                    "cert": "https://storage.googleapis.com/download/storage/v1/b/m2live-api.appspot.com/o/services%2F813408d3-8952-40e6-8565-6ea6c25716f7?generation=1676447963440205&alt=media",
-                    "ca": "https://storage.googleapis.com/download/storage/v1/b/m2live-api.appspot.com/o/services%2F7e12fde0-5873-453c-96c3-f58f40a9a323?generation=1676447985140791&alt=media"
-                }
-            ],
-            "functions": {
-                "network": {
+                    },
                     "cache": {
                         "cachingKey": {
                             "acceptEncoding": {
@@ -1439,28 +1385,75 @@
                         "ttl": {
                             "custom": [],
                             "resCode": {
-                                "res2xx": {
-                                    "sec": 3600
+                                "noCache": {
+                                    "sec": 5
                                 },
                                 "res4xx": {
                                     "sec": 30
                                 },
+                                "res5xx": {
+                                    "sec": 30
+                                },
+                                "res2xx": {
+                                    "sec": 1800
+                                },
                                 "res3xx": {
                                     "sec": 300
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "image.genie.co.kr"
+                ]
+            },
+            "name": "image.genie.co.kr",
+            "enable": true
+        },
+        {
+            "functions": {
+                "network": {
+                    "proxy": {
+                        "meta": {
+                            "enable": true,
+                            "keyword": "proxy"
+                        }
+                    },
+                    "cache": {
+                        "cachingKey": {
+                            "acceptEncoding": {
+                                "enable": true
+                            },
+                            "queryString": {
+                                "enable": true
+                            },
+                            "case": {
+                                "enable": true
+                            }
+                        },
+                        "ttl": {
+                            "custom": [],
+                            "resCode": {
+                                "noCache": {
+                                    "sec": 5
+                                },
+                                "res4xx": {
+                                    "sec": 30
                                 },
                                 "res5xx": {
                                     "sec": 30
                                 },
-                                "noCache": {
-                                    "sec": 5
+                                "res2xx": {
+                                    "sec": 3600
+                                },
+                                "res3xx": {
+                                    "sec": 300
                                 }
                             }
-                        }
-                    },
-                    "proxy": {
-                        "meta": {
-                            "keyword": "proxy",
-                            "enable": true
                         }
                     }
                 }
@@ -1472,49 +1465,55 @@
                 ]
             },
             "name": "cds.myktoon.com",
+            "https": [
+                {
+                    "cert": "https://storage.googleapis.com/download/storage/v1/b/m2live-api.appspot.com/o/services%2F813408d3-8952-40e6-8565-6ea6c25716f7?generation=1676447963440205&alt=media",
+                    "key": "https://storage.googleapis.com/download/storage/v1/b/m2live-api.appspot.com/o/services%2Fd134d678-ab6b-4604-9137-d93ce0571bc4?generation=1676447973831637&alt=media",
+                    "ca": "https://storage.googleapis.com/download/storage/v1/b/m2live-api.appspot.com/o/services%2F7e12fde0-5873-453c-96c3-f58f40a9a323?generation=1676447985140791&alt=media"
+                }
+            ],
             "enable": true
         },
         {
-            "name": "wimg.mk.co.kr",
             "functions": {
                 "network": {
+                    "proxy": {
+                        "meta": {
+                            "enable": true,
+                            "keyword": "proxy"
+                        }
+                    },
                     "cache": {
                         "cachingKey": {
-                            "case": {
-                                "enable": true
-                            },
                             "acceptEncoding": {
                                 "enable": true
                             },
                             "queryString": {
                                 "enable": true
+                            },
+                            "case": {
+                                "enable": true
                             }
                         },
                         "ttl": {
+                            "custom": [],
                             "resCode": {
-                                "res3xx": {
-                                    "sec": 300
-                                },
                                 "noCache": {
                                     "sec": 5
-                                },
-                                "res2xx": {
-                                    "sec": 1800
                                 },
                                 "res4xx": {
                                     "sec": 30
                                 },
                                 "res5xx": {
                                     "sec": 30
+                                },
+                                "res2xx": {
+                                    "sec": 1800
+                                },
+                                "res3xx": {
+                                    "sec": 300
                                 }
-                            },
-                            "custom": []
-                        }
-                    },
-                    "proxy": {
-                        "meta": {
-                            "keyword": "proxy",
-                            "enable": true
+                            }
                         }
                     }
                 }
@@ -1525,59 +1524,60 @@
                     "wimg.mk.co.kr"
                 ]
             },
+            "name": "wimg.mk.co.kr",
             "enable": true
         },
         {
             "functions": {
                 "network": {
+                    "proxy": {
+                        "meta": {
+                            "enable": true,
+                            "keyword": "proxy"
+                        }
+                    },
                     "cache": {
                         "cachingKey": {
                             "acceptEncoding": {
                                 "enable": true
                             },
-                            "case": {
+                            "queryString": {
                                 "enable": true
                             },
-                            "queryString": {
+                            "case": {
                                 "enable": true
                             }
                         },
                         "ttl": {
+                            "custom": [],
                             "resCode": {
-                                "res5xx": {
-                                    "sec": 30
+                                "noCache": {
+                                    "sec": 5
                                 },
                                 "res4xx": {
                                     "sec": 30
                                 },
-                                "noCache": {
-                                    "sec": 5
+                                "res5xx": {
+                                    "sec": 30
+                                },
+                                "res2xx": {
+                                    "sec": 3599
                                 },
                                 "res3xx": {
                                     "sec": 300
-                                },
-                                "res2xx": {
-                                    "sec": 3600
                                 }
-                            },
-                            "custom": []
-                        }
-                    },
-                    "proxy": {
-                        "meta": {
-                            "keyword": "proxy",
-                            "enable": true
+                            }
                         }
                     }
                 }
             },
-            "name": "img.ktcdnteam.link",
             "origin": {
+                "protocol": "https",
                 "address": [
                     "api-storage.cloud.toast.com/v1/AUTH_b2e666be107845569c39251b0be7fd32/dahee"
-                ],
-                "protocol": "https"
+                ]
             },
+            "name": "img.ktcdnteam.link",
             "enable": true
         }
     ]
