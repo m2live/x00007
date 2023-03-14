@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.5/1;workstack=32",
+        "version": "1.2.5/1;workstack=33",
         "group": "",
         "branch": "",
         "admin": "",
@@ -1472,59 +1472,6 @@
                     "ca": "https://storage.googleapis.com/download/storage/v1/b/m2live-api.appspot.com/o/services%2F7e12fde0-5873-453c-96c3-f58f40a9a323?generation=1676447985140791&alt=media"
                 }
             ],
-            "enable": true
-        },
-        {
-            "functions": {
-                "network": {
-                    "proxy": {
-                        "meta": {
-                            "enable": true,
-                            "keyword": "proxy"
-                        }
-                    },
-                    "cache": {
-                        "cachingKey": {
-                            "acceptEncoding": {
-                                "enable": true
-                            },
-                            "queryString": {
-                                "enable": true
-                            },
-                            "case": {
-                                "enable": true
-                            }
-                        },
-                        "ttl": {
-                            "custom": [],
-                            "resCode": {
-                                "noCache": {
-                                    "sec": 5
-                                },
-                                "res4xx": {
-                                    "sec": 30
-                                },
-                                "res5xx": {
-                                    "sec": 30
-                                },
-                                "res2xx": {
-                                    "sec": 1800
-                                },
-                                "res3xx": {
-                                    "sec": 300
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "wimg.mk.co.kr"
-                ]
-            },
-            "name": "wimg.mk.co.kr",
             "enable": true
         },
         {
