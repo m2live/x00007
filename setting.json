@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.5/1;workstack=33",
+        "version": "1.2.5/1;workstack=34",
         "group": "",
         "branch": "",
         "admin": "",
@@ -1361,59 +1361,6 @@
         }
     },
     "hosting": [
-        {
-            "functions": {
-                "network": {
-                    "proxy": {
-                        "meta": {
-                            "enable": true,
-                            "keyword": "proxy"
-                        }
-                    },
-                    "cache": {
-                        "cachingKey": {
-                            "acceptEncoding": {
-                                "enable": true
-                            },
-                            "queryString": {
-                                "enable": true
-                            },
-                            "case": {
-                                "enable": true
-                            }
-                        },
-                        "ttl": {
-                            "custom": [],
-                            "resCode": {
-                                "noCache": {
-                                    "sec": 5
-                                },
-                                "res4xx": {
-                                    "sec": 30
-                                },
-                                "res5xx": {
-                                    "sec": 30
-                                },
-                                "res2xx": {
-                                    "sec": 1800
-                                },
-                                "res3xx": {
-                                    "sec": 300
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "image.genie.co.kr"
-                ]
-            },
-            "name": "image.genie.co.kr",
-            "enable": true
-        },
         {
             "functions": {
                 "network": {
