@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.5/1;workstack=37",
+        "version": "1.2.5/1;workstack=38",
         "group": "",
         "branch": "",
         "admin": "",
@@ -259,7 +259,7 @@
                         },
                         "name": "eventlog",
                         "path": "/ktcloud/logs/type={logtype}/year={timestamp.year}/month={timestamp.month}/day={timestamp.day}/hour={timestamp.hour}/min={timestamp.minute}/domain={domain}/{hostname}_{ip}_{timestamp}.log",
-                        "rolling": "0 *",
+                        "rolling": "*/5 *",
                         "type": "aws-s3"
                     }
                 ]
