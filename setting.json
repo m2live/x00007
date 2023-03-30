@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.5/1;workstack=36",
+        "version": "1.2.5/1;workstack=37",
         "group": "",
         "branch": "",
         "admin": "",
@@ -1455,7 +1455,7 @@
                                     "sec": 30
                                 },
                                 "res2xx": {
-                                    "sec": 3600
+                                    "sec": 3599
                                 },
                                 "res3xx": {
                                     "sec": 300
